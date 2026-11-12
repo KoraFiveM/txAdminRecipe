@@ -16,7 +16,7 @@ permissions:
   contents: read
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: kora-vps
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
