@@ -3,6 +3,8 @@
 [![Validate recipe](https://github.com/KoraFiveM/txAdminRecipe/actions/workflows/validate-recipe.yml/badge.svg)](https://github.com/KoraFiveM/txAdminRecipe/actions/workflows/validate-recipe.yml) [![Check resources](https://github.com/KoraFiveM/txAdminRecipe/actions/workflows/check-resources.yml/badge.svg)](https://github.com/KoraFiveM/txAdminRecipe/actions/workflows/check-resources.yml)
 
 
+> **⚠️ THIS IS UNDER CONSTRUCTION - MAY NOT WORK**
+
 The official txAdmin deployment recipe for **Kora Framework Alpha**.
 
 ## Installation
