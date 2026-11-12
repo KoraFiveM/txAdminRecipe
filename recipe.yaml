@@ -44,6 +44,12 @@ tasks:
 - action: waste_time
   seconds: 5
 - action: download_github
+  src: https://github.com/KoraFiveM/kora_phoneshop
+  ref: main
+  dest: ./resources/[default-maps]/kora_phoneshop
+- action: waste_time
+  seconds: 5
+- action: download_github
   src: https://github.com/KoraFiveM/kora_lib
   ref: dev
   dest: ./resources/[pre]/kora_lib
