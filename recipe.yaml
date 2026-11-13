@@ -285,5 +285,6 @@ tasks:
   mode: all_vars
   file:
   - ./server.cfg
+  - ./permissions.cfg
 - action: remove_path
   path: ./tmp
