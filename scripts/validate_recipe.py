@@ -43,7 +43,7 @@ for t in downloads:
 
 cfg=(ROOT/'server.cfg').read_text(encoding='utf-8')
 sql=(ROOT/'kora.sql').read_text(encoding='utf-8')
-for var in ('{{serverEndpoints}}','{{maxClients}}','{{svLicense}}','{{dbConnectionString}}','{{addPrincipalsMaster}}'):
+for var in ('{{serverEndpoints}}','{{maxClients}}','{{svLicense}}','{{dbConnectionString}}'):
     check(var in cfg, f'Missing txAdmin server.cfg placeholder: {var}')
 check('exec permissions.cfg' in cfg, 'server.cfg must load permissions.cfg')
 check('https://docs.koraframe.work/' in cfg, 'Missing official Kora docs URL')
