@@ -142,9 +142,9 @@ tasks:
   ref: dev
   dest: ./resources/[kora]/kora_weathersync
 - action: download_github
-  src: https://github.com/KoraFiveM/kora_phone-stevie
+  src: https://github.com/KoraFiveM/kora_phone
   ref: dev
-  dest: ./resources/[kora]/kora_phone-stevie
+  dest: ./resources/[kora]/kora_phone
 - action: download_github
   src: https://github.com/KoraFiveM/kora_police
   ref: dev
@@ -197,10 +197,6 @@ tasks:
   src: https://github.com/KoraFiveM/kora_customs
   ref: dev
   dest: ./resources/[kora]/kora_customs
-- action: download_github
-  src: https://github.com/KoraFiveM/kora_crypto
-  ref: dev
-  dest: ./resources/[kora]/kora_crypto
 - action: download_github
   src: https://github.com/KoraFiveM/kora_consumables
   ref: dev
