@@ -52,6 +52,7 @@ resources/
     PolyZone/
     qb-core/
     oxmysql/
+    mysql-async/
   [kora]/
   [standalone]/
 ```
