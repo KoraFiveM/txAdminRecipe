@@ -250,9 +250,9 @@ tasks:
   ref: dev
   dest: ./resources/[standalone]/kora_chat
 - action: download_github
-  src: https://github.com/KoraFiveM/PolyZone
+  src: https://github.com/KoraFiveM/compat
   ref: main
-  dest: ./resources/[standalone]/PolyZone
+  dest: ./resources/[compat]
 - action: download_github
   src: https://github.com/KoraFiveM/kora_voice
   ref: dev

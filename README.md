@@ -48,6 +48,10 @@ resources/
     kora_sql/
     kora_inventory/
     kora_core/
+  [compat]/
+    PolyZone/
+    qb-core/
+    oxmysql/
   [kora]/
   [standalone]/
 ```
