@@ -131,6 +131,8 @@ tasks:
   src: https://github.com/KoraFiveM/kora_target
   ref: dev
   dest: ./resources/[kora]/kora_target
+- action: waste_time
+  seconds: 3
 - action: download_github
   src: https://github.com/KoraFiveM/kora_interior
   ref: dev
