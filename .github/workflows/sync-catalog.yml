@@ -1,0 +1,41 @@
+name: Sync recipe from catalog
+on:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - recipe/base.yaml
+      - scripts/generate_recipe.py
+  workflow_dispatch:
+  repository_dispatch:
+    types: [catalog-updated]
+permissions:
+  contents: write
+concurrency:
+  group: sync-catalog
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: kora-vps
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch catalog from kora_docs_next
+        run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/resources.json" https://raw.githubusercontent.com/KoraFiveM/kora_docs_next/main/catalog/resources.json
+      - name: Generate recipe.yaml
+        run: python3 scripts/generate_recipe.py "$RUNNER_TEMP/resources.json"
+      - name: Validate
+        run: python3 scripts/validate_recipe.py
+      - name: Check resource repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/check_resources.py
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- recipe.yaml; then echo "recipe.yaml unchanged"; exit 0; fi
+          git config user.name "kora-recipe-bot"
+          git config user.email "kora-recipe-bot@users.noreply.github.com"
+          git add recipe.yaml
+          git commit -m "Regenerate recipe.yaml from docs catalog"
+          git push

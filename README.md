@@ -20,6 +20,14 @@ https://raw.githubusercontent.com/KoraFiveM/txAdminRecipe/main/recipe.yaml
 4. Supply your Cfx.re license and MariaDB/MySQL connection details.
 5. Deploy, review `server.cfg`, and start your server.
 
+## Maintaining the recipe
+
+`recipe.yaml` is generated. The resource downloads come from `catalog/resources.json` in
+[kora_docs_next](https://github.com/KoraFiveM/kora_docs_next) (kinds `kora` and `dependency`, plus compat extras; `internal` and `retired` are skipped).
+The **Sync recipe from catalog** workflow runs hourly on the `kora-vps` runner (also on manual dispatch or a `catalog-updated` repository dispatch), regenerates the file, validates it and commits any change.
+Edit static tasks in `recipe/base.yaml`, never the download list in `recipe.yaml`.
+Local run: `python3 scripts/generate_recipe.py path/to/resources.json`.
+
 ## Default settings
 
 - OneSync on
