@@ -23,10 +23,6 @@ tasks:
   file: ./kora.sql
   search: KORA_DATABASE_NAME
   replace: '{{dbName}}'
-- action: replace_string
-  mode: all_vars
-  file:
-  - ./kora.sql
 - action: query_database
   file: ./kora.sql
 - action: download_github
@@ -37,12 +33,12 @@ tasks:
   src: https://github.com/KoraFiveM/-default-maps-
   ref: dev
   dest: ./resources/[default-maps]
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_phoneshop
   ref: main
   dest: ./resources/[default-maps]/kora_phoneshop
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_lib
   ref: dev
@@ -51,12 +47,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_sql
   ref: dev
   dest: ./resources/[pre]/kora_sql
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_inventory
   ref: dev
   dest: ./resources/[pre]/kora_inventory
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_core
   ref: dev
@@ -65,12 +61,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_drugs
   ref: dev
   dest: ./resources/[kora]/kora_drugs
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_utils
   ref: dev
   dest: ./resources/[kora]/kora_utils
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_doorlock
   ref: dev
@@ -79,12 +75,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_businesses
   ref: dev
   dest: ./resources/[kora]/kora_businesses
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_admin
   ref: dev
   dest: ./resources/[kora]/kora_admin
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_multijob
   ref: dev
@@ -93,12 +89,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_bossmenu
   ref: dev
   dest: ./resources/[kora]/kora_bossmenu
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_multichar
   ref: dev
   dest: ./resources/[kora]/kora_multichar
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_loading
   ref: dev
@@ -107,12 +103,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_hud
   ref: dev
   dest: ./resources/[kora]/kora_hud
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_clothing
   ref: dev
   dest: ./resources/[kora]/kora_clothing
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_banking
   ref: dev
@@ -121,28 +117,26 @@ tasks:
   src: https://github.com/KoraFiveM/kora_dispatch
   ref: dev
   dest: ./resources/[kora]/kora_dispatch
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_fuel
   ref: dev
   dest: ./resources/[kora]/kora_fuel
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_target
   ref: dev
   dest: ./resources/[kora]/kora_target
-- action: waste_time
-  seconds: 3
 - action: download_github
   src: https://github.com/KoraFiveM/kora_interior
   ref: dev
   dest: ./resources/[kora]/kora_interior
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_weathersync
   ref: dev
   dest: ./resources/[kora]/kora_weathersync
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_phone
   ref: dev
@@ -151,12 +145,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_police
   ref: dev
   dest: ./resources/[kora]/kora_police
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_garages
   ref: dev
   dest: ./resources/[kora]/kora_garages
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_skills
   ref: dev
@@ -165,12 +159,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_dealership
   ref: dev
   dest: ./resources/[kora]/kora_dealership
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_jobcreator
   ref: dev
   dest: ./resources/[kora]/kora_jobcreator
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_crafting
   ref: dev
@@ -179,12 +173,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_ambulance
   ref: dev
   dest: ./resources/[kora]/kora_ambulance
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_truckerjob
   ref: dev
   dest: ./resources/[kora]/kora_truckerjob
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_newsjob
   ref: dev
@@ -193,18 +187,16 @@ tasks:
   src: https://github.com/KoraFiveM/kora_cityhall
   ref: dev
   dest: ./resources/[kora]/kora_cityhall
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_customs
   ref: dev
   dest: ./resources/[kora]/kora_customs
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_consumables
   ref: dev
   dest: ./resources/[kora]/kora_consumables
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_scoreboard
   ref: dev
@@ -213,12 +205,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_pawnshop
   ref: dev
   dest: ./resources/[kora]/kora_pawnshop
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_fishing
   ref: dev
   dest: ./resources/[kora]/kora_fishing
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_vehiclekeys
   ref: dev
@@ -227,12 +219,12 @@ tasks:
   src: https://github.com/KoraFiveM/kora_metaldetecting
   ref: dev
   dest: ./resources/[kora]/kora_metaldetecting
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_mdt
   ref: dev
   dest: ./resources/[kora]/kora_mdt
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_mining
   ref: dev
@@ -241,30 +233,50 @@ tasks:
   src: https://github.com/KoraFiveM/kora_robberies
   ref: dev
   dest: ./resources/[kora]/kora_robberies
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_queue
   ref: dev
   dest: ./resources/[standalone]/kora_queue
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_chat
   ref: dev
   dest: ./resources/[standalone]/kora_chat
 - action: download_github
-  src: https://github.com/KoraFiveM/compat
+  src: https://github.com/KoraFiveM/ox_lib
   ref: main
-  dest: ./resources/[compat]
+  dest: ./resources/[compat]/ox_lib
+- action: waste_time
+  seconds: 5
+- action: download_github
+  src: https://github.com/KoraFiveM/oxmysql
+  ref: main
+  dest: ./resources/[compat]/oxmysql
+- action: download_github
+  src: https://github.com/KoraFiveM/qb-core
+  ref: main
+  dest: ./resources/[compat]/qb-core
+- action: download_github
+  src: https://github.com/KoraFiveM/PolyZone
+  ref: main
+  dest: ./resources/[compat]/PolyZone
+- action: waste_time
+  seconds: 5
+- action: download_github
+  src: https://github.com/KoraFiveM/mysql-async
+  ref: main
+  dest: ./resources/[compat]/mysql-async
 - action: download_github
   src: https://github.com/KoraFiveM/kora_voice
   ref: dev
   dest: ./resources/[standalone]/kora_voice
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_theme
   ref: dev
   dest: ./resources/[standalone]/kora_theme
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_emotemenu
   ref: dev
@@ -273,12 +285,12 @@ tasks:
   src: https://github.com/KoraFiveM/props
   ref: main
   dest: ./resources/[standalone]/props
-- action: waste_time
-  seconds: 5
 - action: download_github
   src: https://github.com/KoraFiveM/kora_sound
   ref: dev
   dest: ./resources/[standalone]/kora_sound
+- action: waste_time
+  seconds: 5
 - action: download_github
   src: https://github.com/Bob74/bob74_ipl
   ref: master
