@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/KoraFiveM/txAdminRecipe/main/recipe.yaml
 
 `recipe.yaml` is generated. The resource downloads come from `catalog/resources.json` in
 [kora_docs_next](https://github.com/KoraFiveM/kora_docs_next) (kinds `kora` and `dependency`, plus compat extras; `internal` and `retired` are skipped).
-The **Sync recipe from catalog** workflow runs hourly on the `kora-vps` runner (also on manual dispatch or a `catalog-updated` repository dispatch), regenerates the file, validates it and commits any change.
+The **Sync recipe from catalog** workflow runs every 10 minutes on the `kora-vps` runner (also on manual dispatch or a `catalog-updated` repository dispatch), regenerates the file, validates it and commits any change.
 Edit static tasks in `recipe/base.yaml`, never the download list in `recipe.yaml`.
 Local run: `python3 scripts/generate_recipe.py path/to/resources.json`.
 
