@@ -5,6 +5,8 @@ on:
     paths:
       - recipe/base.yaml
       - scripts/generate_recipe.py
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [catalog-updated]
@@ -22,6 +24,8 @@ jobs:
       - name: Fetch catalog from kora_docs_next
         run: curl -fsSL --retry 3 -o "$RUNNER_TEMP/resources.json" https://raw.githubusercontent.com/KoraFiveM/kora_docs_next/main/catalog/resources.json
       - name: Generate recipe.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/generate_recipe.py "$RUNNER_TEMP/resources.json"
       - name: Validate
         run: python3 scripts/validate_recipe.py

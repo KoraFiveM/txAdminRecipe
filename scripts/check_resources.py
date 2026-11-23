@@ -38,7 +38,19 @@ for (owner,repo),refs in sorted(repos.items()):
         except (urllib.error.URLError,TimeoutError,ValueError) as e:
             errors.append(f'{owner}/{repo}@{ref}: {e}')
             print('FAIL',errors[-1])
+for task in recipe['tasks']:
+    if task.get('action') != 'download_file':
+        continue
+    url = task['url']
+    try:
+        # A HEAD request follows the release CDN redirect without downloading the ZIP.
+        request = urllib.request.Request(url, headers={'User-Agent': headers['User-Agent']}, method='HEAD')
+        with urllib.request.urlopen(request, timeout=20):
+            print(f'OK   {url}')
+    except (urllib.error.URLError, TimeoutError) as e:
+        errors.append(f'{url}: {e}')
+        print('FAIL', errors[-1])
 if errors:
-    print(f'\nFAILED: {len(errors)} of {sum(map(len,repos.values()))} resource refs unavailable.')
+    print(f'\nFAILED: {len(errors)} resource references or release ZIPs failed.')
     sys.exit(1)
-print(f'PASS: {len(repos)} repositories and all referenced branches reachable')
+print(f'PASS: {len(repos)} repositories, refs and release ZIPs reachable')
