@@ -137,10 +137,17 @@ tasks:
   dest: ./resources/[kora]/kora_weathersync
 - action: waste_time
   seconds: 5
+- action: download_file
+  url: https://github.com/KoraFiveM/kora_phone/releases/download/v0.1.1-dev.2/kora_phone-v0.1.1-dev.2.zip
+  path: ./tmp/kora-phone.zip
+- action: unzip
+  src: ./tmp/kora-phone.zip
+  dest: ./resources/[kora]
 - action: download_github
   src: https://github.com/KoraFiveM/kora_phone
-  ref: dev
-  dest: ./resources/[kora]/kora_phone
+  ref: v0.1.1-dev.2
+  subpath: stream
+  dest: ./resources/[kora]/kora_phone/stream
 - action: download_github
   src: https://github.com/KoraFiveM/kora_police
   ref: dev

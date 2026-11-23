@@ -4,6 +4,7 @@ from pathlib import Path
 from collections import Counter
 import re
 import sys
+from urllib.parse import unquote
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +42,23 @@ for field in ('src','dest'):
 for t in downloads:
     check(bool(re.fullmatch(r'https://github\.com/[^/\s]+/[^/\s]+/?',t.get('src',''))), f'Invalid GitHub repository URL: {t.get("src")}')
 
+zip_downloads = [t for t in tasks if isinstance(t, dict) and t.get('action') == 'download_file']
+for field in ('url', 'path'):
+    check(len({t.get(field) for t in zip_downloads}) == len(zip_downloads),
+          f'Duplicate release ZIP {field}')
+for i, t in enumerate(tasks):
+    if t not in zip_downloads:
+        continue
+    url = t.get('url', '')
+    path = t.get('path', '')
+    check(bool(re.fullmatch(r'https://github\.com/[\w.-]+/[\w.-]+/releases/download/[\w.-]+/[\w.\[\]-]+\.zip', unquote(url))),
+          f'Invalid runtime ZIP URL: {url}')
+    check(bool(re.fullmatch(r'\./tmp/[\w.-]+\.zip', path)), f'Invalid ZIP staging path: {path}')
+    extract = tasks[i + 1] if i + 1 < len(tasks) else {}
+    check(extract.get('action') == 'unzip' and extract.get('src') == path
+          and extract.get('dest', '').startswith('./resources'),
+          f'Release ZIP must be extracted immediately into resources: {path}')
+
 cfg=(ROOT/'server.cfg').read_text(encoding='utf-8')
 sql=(ROOT/'kora.sql').read_text(encoding='utf-8')
 for var in ('{{serverEndpoints}}','{{maxClients}}','{{svLicense}}','{{dbConnectionString}}'):
@@ -56,7 +74,9 @@ for key in ('sv_projectName','sv_projectDesc','sv_hostname','locale','tags','ban
 
 # Ensure required pre-resources are downloaded to their expected locations.
 for resource in ('kora_lib','kora_sql','kora_inventory','kora_core'):
-    check(any(t.get('dest')==f'./resources/[pre]/{resource}' for t in downloads), f'Missing pre-resource download: {resource}')
+    check(any(t.get('dest') == f'./resources/[pre]/{resource}' for t in downloads)
+          or any(t.get('path') == f"./tmp/{resource.replace('_', '-')}.zip" for t in zip_downloads),
+          f'Missing pre-resource download: {resource}')
     check(re.search(r'^\s*ensure\s+'+resource+r'\s*$',cfg,re.M) is not None, f'Missing ensure: {resource}')
 
 if errors:

@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/KoraFiveM/txAdminRecipe/main/recipe.yaml
 
 `recipe.yaml` is generated. The resource downloads come from `catalog/resources.json` in
 [kora_docs_next](https://github.com/KoraFiveM/kora_docs_next) (kinds `kora` and `dependency`, plus compat extras; `internal` and `retired` are skipped).
-The **Sync recipe from catalog** workflow runs every 10 minutes on the `kora-vps` runner (also on manual dispatch or a `catalog-updated` repository dispatch), regenerates the file, validates it and commits any change.
+The **Sync recipe from catalog** workflow runs on the `kora-vps` runner hourly, after generator changes on `main`, on manual dispatch, or on a `catalog-updated` repository dispatch, regenerates the file, validates it and commits any change.
 Edit static tasks in `recipe/base.yaml`, never the download list in `recipe.yaml`.
 Local run: `python3 scripts/generate_recipe.py path/to/resources.json`.
 
@@ -40,7 +40,7 @@ Local run: `python3 scripts/generate_recipe.py path/to/resources.json`.
 
 - **All referenced repositories must be public** for a public txAdmin deployment.
 - The release still needs a full live deployment test before being called production-ready.
-- The recipe downloads source repositories from `main`. Source-only resources with UI compilation steps may require prebuilt release packages to work in-game.
+- The recipe installs resources in the installer's catalog order. It prefers published runtime ZIPs and uses the catalog branch until a resource publishes one. The hourly sync updates pinned URLs to the newest matching published ZIP. Run the sync workflow manually for an immediate refresh.
 - `kora_sql` needs permission to create its tables and will do this at server start.
 
 ## Structure deployed on server
@@ -87,6 +87,6 @@ Configure the public server name, project name and description, locale, tags, ba
 ## GitHub Actions checks
 
 - **Validate recipe:** YAML syntax, txAdmin placeholders, SQL database-only creation, Cfx Portal-managed listing settings, duplicate downloads, and Kora startup prerequisites. Runs on pushes and pull requests.
-- **Check resource repositories:** Queries the GitHub API for every repository and branch referenced in `recipe.yaml`. Runs when resource-related files change and can also be run manually. A missing/private repository will fail the check, which is expected until all dependencies are publicly available.
+- **Check resource repositories:** Checks the GitHub repositories, refs, and release ZIP URLs in `recipe.yaml`. Runs when resource-related files change and can also be run manually. A missing/private repository will fail the check, which is expected until all dependencies are publicly available.
 
 Both workflows are read-only and do not deploy servers, publish releases, or require custom secrets. These checks do not replace an actual txAdmin installation test.
