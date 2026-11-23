@@ -1,7 +1,5 @@
 name: Sync recipe from catalog
 on:
-  schedule:
-    - cron: '*/10 * * * *'
   push:
     branches: [main]
     paths:
