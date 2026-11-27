@@ -5,7 +5,8 @@ Usage: generate_recipe.py CATALOG_JSON [--check]
   --check  exit 1 if recipe.yaml differs from what would be generated.
 
 Static tasks live in recipe/base.yaml. Resource downloads come from the
-catalog: kind kora/dependency (plus compat-type extras such as ox_lib),
+catalog: kind kora/dependency (plus compat-type extras such as ox_lib and
+optional entries flagged defaultOn such as kora_peds),
 skipping internal and retired entries, sorted by `order`.
 Never edit the download section of recipe.yaml by hand.
 """
@@ -18,7 +19,9 @@ PAUSE_EVERY, PAUSE_SECONDS = 3, 5
 def included(r):
     if r.get('retired') or r.get('kind') == 'internal':
         return False
-    return r.get('kind') in ('kora', 'dependency') or r.get('type') == 'compat'
+    # optional resources flagged defaultOn (e.g. kora_peds) are installed by default too
+    return (r.get('kind') in ('kora', 'dependency') or r.get('type') == 'compat'
+            or (r.get('kind') == 'optional' and bool(r.get('defaultOn'))))
 
 def build(catalog):
     base = yaml.safe_load((ROOT / 'recipe' / 'base.yaml').read_text(encoding='utf-8'))

@@ -54,6 +54,10 @@ check(not re.search(r'\b(?:CREATE\s+TABLE|DROP\s+|TRUNCATE\s+|DELETE\s+FROM)\b',
 for key in ('sv_projectName','sv_projectDesc','sv_hostname','locale','tags','banner_connecting','banner_detail','load_server_icon'):
     check(not any(re.match(r'^\s*(?:sets?\s+)?'+re.escape(key)+r'\b',line) for line in cfg.splitlines() if not line.lstrip().startswith('#')), f'Portal-managed listing setting still active: {key}')
 
+# Default-on optional resources must be started: kora_peds lives in [peds].
+if any(t.get('dest')=='./resources/[peds]/kora_peds' for t in downloads):
+    check(re.search(r'^\s*ensure\s+\[peds\]\s*$',cfg,re.M) is not None, 'Missing ensure: [peds]')
+
 # Ensure required pre-resources are downloaded to their expected locations.
 for resource in ('kora_lib','kora_sql','kora_inventory','kora_core'):
     check(any(t.get('dest')==f'./resources/[pre]/{resource}' for t in downloads), f'Missing pre-resource download: {resource}')
